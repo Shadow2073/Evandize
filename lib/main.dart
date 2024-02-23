@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:evandize/login.dart';
-import 'package:evandize/list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ListPage(),
+      home: const LoginPage(),
     );
   }
 }

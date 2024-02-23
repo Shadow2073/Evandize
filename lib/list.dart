@@ -1,45 +1,58 @@
 import 'package:flutter/material.dart';
 
-class ListPage extends StatelessWidget {
+class ListPage extends StatefulWidget {
+  @override
+  _ListPageState createState() => _ListPageState();
+}
+
+class _ListPageState extends State<ListPage> {
+  List<String> cards = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Card List'),
+        title: Text('Events', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.transparent,
       ),
-      body: ListView(
+      body: Column(
         children: [
-          Card(
-            child: ListTile(
-              title: Text('Card 1'),
-              subtitle: Text('This is card 1'),
+          SizedBox(
+            height: 40,
+            child: Text(
+              "All pages are lists and will be updated with api data, just need to duplicate the list page and change the api call",
+              style: TextStyle(color: Colors.amber),
             ),
           ),
-          Card(
-            child: ListTile(
-              title: Text('Card 2'),
-              subtitle: Text('This is card 2'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Card 3'),
-              subtitle: Text('This is card 3'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Card 4'),
-              subtitle: Text('This is card 4'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('Card 5'),
-              subtitle: Text('This is card 5'),
+          Expanded(
+            child: ListView.builder(
+              itemCount: cards.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  color: Colors.yellow,
+                  child: ListTile(
+                    title: Column(
+                      children: [
+                        Text('Event ${index + 1}'),
+                        Text('Event and info goes here when api'),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ],
+        mainAxisSize: MainAxisSize.min,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            cards.add('New Card');
+          });
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
